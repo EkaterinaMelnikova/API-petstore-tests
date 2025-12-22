@@ -28,18 +28,8 @@ public class PetstoreTests {
 
     @Test
     void createUserTest() {
-        String data = "[\n" +
-                "  {\n" +
-                "    \"id\": 777,\n" +
-                "    \"username\": \"Kimo\",\n" +
-                "    \"firstName\": \"Ekaterina\",\n" +
-                "    \"lastName\": \"Kimo\",\n" +
-                "    \"email\": \"12345@gmail.com\",\n" +
-                "    \"password\": \"123\",\n" +
-                "    \"phone\": \"12345678\",\n" +
-                "    \"userStatus\": 10\n" +
-                "  }\n" +
-                "]";
+        String data =  "[{\"id\":777,\"username\":\"Kimo\",\"firstName\":\"Ekaterina\",\"lastName\":\"Kimo\",\"email\":\"12345@gmail.com\",\"password\":\"123\",\"phone\":\"12345678\",\"userStatus\":10}]";
+
 
         given()
                 .log().uri()
@@ -86,18 +76,7 @@ public class PetstoreTests {
 
     @Test
     void createUserWithoutContentTypeTest() {
-        String data = "[\n" +
-                "  {\n" +
-                "    \"id\": 777,\n" +
-                "    \"username\": \"Kimo\",\n" +
-                "    \"firstName\": \"Ekaterina\",\n" +
-                "    \"lastName\": \"Kimo\",\n" +
-                "    \"email\": \"12345@gmail.com\",\n" +
-                "    \"password\": \"123\",\n" +
-                "    \"phone\": \"12345678\",\n" +
-                "    \"userStatus\": 10\n" +
-                "  }\n" +
-                "]";
+        String data =  "[{\"id\":777,\"username\":\"Kimo\",\"firstName\":\"Ekaterina\",\"lastName\":\"Kimo\",\"email\":\"12345@gmail.com\",\"password\":\"123\",\"phone\":\"12345678\",\"userStatus\":10}]";
 
         given()
                 .log().uri()
