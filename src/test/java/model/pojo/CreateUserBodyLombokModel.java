@@ -1,6 +1,6 @@
-package model;
+package model.pojo;
 
-public class CreateUserBodyModel {
+public class CreateUserBodyLombokModel {
 
     // "[{\"id\":777,\"username\":\"Kimo\",\"firstName\":\"Ekaterina\",\"lastName\":\"Kimo\",\"email\":\"12345@gmail.com\",\"password\":\"123\",\"phone\":\"12345678\",\"userStatus\":10}]";
     int id, userStatus;

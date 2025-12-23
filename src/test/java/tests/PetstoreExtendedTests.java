@@ -1,7 +1,8 @@
 package tests;
 
-import model.CreateUserBodyModel;
-import model.CreateUserResponseModel;
+import model.lombok.CreateUserResponseLombokModel;
+import model.pojo.CreateUserBodyLombokModel;
+import model.pojo.CreateUserResponseModel;
 import org.junit.jupiter.api.Test;
 
 
@@ -13,10 +14,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class PetstoreExtendedTests {
 
+
     @Test
-    void createUserTest() {
+    void createUserLombokTest() {
         //String data =  "[{\"id\":777,\"username\":\"Kimo\",\"firstName\":\"Ekaterina\",\"lastName\":\"Kimo\",\"email\":\"12345@gmail.com\",\"password\":\"123\",\"phone\":\"12345678\",\"userStatus\":10}]";
-        CreateUserBodyModel body= new CreateUserBodyModel();
+        CreateUserBodyLombokModel body= new CreateUserBodyLombokModel();
         body.setId(777);
         body.setUsername("Kimo");
         body.setFirstName("Ekaterina");
@@ -27,7 +29,7 @@ public class PetstoreExtendedTests {
         body.setUserStatus(10);
 
 
-        CreateUserResponseModel response = given()
+        CreateUserResponseLombokModel response = given()
                 .log().uri()
                 .contentType(JSON)
                 .body(List.of(body))   // ← квадратные скобки
@@ -37,11 +39,9 @@ public class PetstoreExtendedTests {
                 .log().status()
                 .log().body()
                 .statusCode(200)
-                .extract().as(CreateUserResponseModel.class);
-                //.body("message", is("ok")); - такой вариант допустим для простых ответов
+                .extract().as(CreateUserResponseLombokModel.class);
 
 
-        //assertEquals("ok",response.getMessage()); стандартный вариант
         assertThat(response.getCode()).isEqualTo(200); // assertj модно-молодежно, легче читать
         assertThat(response.getMessage()).isEqualTo("ok");
         assertThat(response.getType()).isEqualTo("unknown");
