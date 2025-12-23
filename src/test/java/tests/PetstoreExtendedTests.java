@@ -1,15 +1,15 @@
 package tests;
 
 import model.CreateUserBodyModel;
+import model.CreateUserResponseModel;
 import org.junit.jupiter.api.Test;
 
-import java.util.Collections;
+
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.when;
 import static io.restassured.http.ContentType.JSON;
-import static org.hamcrest.Matchers.is;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class PetstoreExtendedTests {
 
@@ -27,8 +27,7 @@ public class PetstoreExtendedTests {
         body.setUserStatus(10);
 
 
-
-        given()
+        CreateUserResponseModel response = given()
                 .log().uri()
                 .contentType(JSON)
                 .body(List.of(body))   // ← квадратные скобки
@@ -38,6 +37,15 @@ public class PetstoreExtendedTests {
                 .log().status()
                 .log().body()
                 .statusCode(200)
-                .body("message", is("ok"));
+                .extract().as(CreateUserResponseModel.class);
+                //.body("message", is("ok")); - такой вариант допустим для простых ответов
+
+
+        //assertEquals("ok",response.getMessage()); стандартный вариант
+        assertThat(response.getCode()).isEqualTo(200); // assertj модно-молодежно, легче читать
+        assertThat(response.getMessage()).isEqualTo("ok");
+        assertThat(response.getType()).isEqualTo("unknown");
+
+
     }
 }
